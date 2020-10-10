@@ -24,7 +24,7 @@
         </div>
     @endif
 
-    <form action="{{ route('products.update', $product->product_id) }}" method="POST">
+    <form action="{{ route('products.update', $product->product_id) }}" method="POST" enctype='multipart/form-data'>
         @csrf
         @method('PUT')
 
@@ -50,19 +50,17 @@
                         value="{{ $product->product_point }}">
                 </div>
             </div>
-            
-            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-        </div>
-
-    </form>
-    <form>
-    <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <img width="150px" src="{{ url('/storage/'.$product->product_image) }}">
                 <div class="form-group">
                     <strong>Product Image:</strong>
                     <input type="file" name="product_image">
                 </div>
             </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+
     </form>
 @endsection

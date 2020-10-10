@@ -136,12 +136,29 @@ class ProductController extends Controller
             // 'product_image' => 'required',
             'product_point' => 'required'
         ]);
-        $product = Product::where('product_id',$id)->update([
-            'product_name' => $request->input('product_name'),
-            'product_description' => $request->input('product_description'),
-            // 'product_image' => $request->input('product_image'),
-            'product_point' => $request->input('product_point'),
-        ]);
+        
+        if ($request->product_image) {
+            $nama_file = $request->file('product_image')->store('public/images');
+            $nama_file = str_replace('public/', '', $nama_file);
+            
+            $product = Product::where('product_id',$id)->update([
+                'product_name' => $request->input('product_name'),
+                'product_description' => $request->input('product_description'),
+                'product_image' => $nama_file,
+                'product_point' => $request->input('product_point'),
+            ]);
+        
+        } else {
+
+            $product = Product::where('product_id',$id)->update([
+                'product_name' => $request->input('product_name'),
+                'product_description' => $request->input('product_description'),
+                // 'product_image' => $request->input('product_image'),
+                'product_point' => $request->input('product_point'),
+            ]);
+
+        }
+
 
         return redirect()->route('products.index')
             ->with('success', 'Product updated successfully');
@@ -161,4 +178,5 @@ class ProductController extends Controller
         return redirect()->route('products.index')
             ->with('success', 'Product deleted successfully');
     }
+
 }
