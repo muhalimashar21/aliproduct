@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Log;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Models\ProductDetail;
+use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
 {
@@ -105,8 +106,11 @@ class ProductController extends Controller
      */
     public function show(int $product)
     {
-        $data = Product::where('product_id', $product)->first();
-        return view('products.show', ["product" => $data]);
+        $data = Product::where('product_id', $product)
+                                ->join('product_details', 'products.product_id', '=', 'product_details.product_detail_prod_id')
+                                ->where('product_detail_cust_id', 0)
+                                ->get();
+        return view('products.show', ["products" => $data]);
     }
 
     /**
