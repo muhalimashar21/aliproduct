@@ -22,6 +22,8 @@
             </ul>
         </div>
     @endif
+
+
     <form action="{{ route('products.store') }}" method="POST" enctype='multipart/form-data' >
         @csrf
 
@@ -57,4 +59,10 @@
         </div>
 
     </form>
+    
+<script src="https://cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
+<script>
+CKEDITOR.replace( 'product_description' );
+</script>
+   
 @endsection

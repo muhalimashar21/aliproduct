@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductDetailController;
 use App\Http\Controllers\ImageUploadController;
 use App\Http\Controllers\UploadController;
+use App\Http\Controllers\LoginController;
 
 
 
@@ -43,4 +44,9 @@ Route::post('upload/proses', [UploadController::class,'proses_upload'])->name('p
 Route::post('upload/hapus', [UploadController::class,'destroy'])->name('destroy');
 // Route::put('/numbers/{id}/update', 'NumberController@update');
 
+Route::post('update-image-product', [ProductController::class,'editImageUpload'])->name('products.update.image');
 
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');

@@ -38,7 +38,11 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Number Available:</strong>
-                    <input type="text" name="number_available" value="{{ $number->number_available }}" class="form-control" placeholder="Number Available">
+                    <select id="number_available" name="number_available">
+                    <option value="{{ $number->number_available }}">Y</option>
+                    <option value="{{ $number->number_available }}">N</option>
+                     </select>
+                    <!-- <input type="submit"> -->
                 </div>
             </div>
            

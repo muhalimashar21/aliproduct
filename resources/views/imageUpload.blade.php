@@ -52,6 +52,11 @@
       </div>
     </div>
 </div>
+
+<script src="https://cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
+<script>
+CKEDITOR.replace( 'image' );
+</script>
 </body>
   
 </html>

@@ -14,10 +14,10 @@ class NumberController extends Controller
      */
     public function index()
     {
-        $numbers = Number::latest()->paginate(10);
+        $numbers = Number::latest()->simplePaginate(6);
 
         return view('numbers.index', compact('numbers'))
-            ->with('i', (request()->input('page', 1) - 1) * 10);
+            ->with('i', (request()->input('page', 1) - 1) * 6);
     }
 
     /**
@@ -40,8 +40,8 @@ class NumberController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'number' => 'required',
-            'number_available' => 'required'
+            'number' => 'required'
+            // 'number_available' => 'required'
         ]);
 
         Number::create($request->all());
@@ -94,7 +94,7 @@ class NumberController extends Controller
         ]);
         $number = Number::where('number_id', $id)->update([
             'number' => $request->input('number'),
-            'number_available' => $request->input('number_available'),
+            'number_available' => $request->input('number_available')
         ]);
 
         return redirect()->route('numbers.index')

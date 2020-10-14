@@ -32,12 +32,12 @@
                     <input type="text" name="number" class="form-control" placeholder="Number">
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <!-- <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Number Available:</strong>
                     <input type="text" name="number_available" class="form-control" placeholder="number_available">
                 </div>
-            </div>
+            </div> -->
             
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="btn btn-primary">Submit</button>

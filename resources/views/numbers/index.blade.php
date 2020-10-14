@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Number </h2>
+                <h2>Member </h2>
             </div>
             <div class="pull-right">
                 <a class="btn btn-success" href="{{ route('numbers.create') }}" title="Create a number"> <i class="fas fa-plus-circle"></i>
@@ -40,7 +40,8 @@
                             <i class="fas fa-eye text-success  fa-lg"></i>
                         </a>
 
-                        <a href="/numbers/{{$number->number_id}}/edit">
+                        <a href={{url("/numbers")."/".$number->number_id."/edit"}}>
+                        <!-- <a href="/numbers/{{$number->number_id}}/edit"> -->
                             <i class="fas fa-edit  fa-lg"></i>
 
                         </a>

@@ -46,10 +46,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::latest()->paginate(5);
+        $products = Product::latest()->simplepaginate(2);
 
         return view('products.index', compact('products'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+            ->with('i', (request()->input('page', 1) - 1) * 2);
     }
 
     /**
@@ -70,6 +70,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         $this->validate($request, [
             'product_name' => 'required',
             'product_description' => 'required',
@@ -107,6 +108,12 @@ class ProductController extends Controller
     {
         $data = Product::where('product_id', $product)->first();
         return view('products.show', ["product" => $data]);
+
+    //     $data = Product::where('product_id', $product)
+    //     ->join('product_details', 'products.product_id', '=', 'product_details.product_detail_prod_id')
+    //     ->where('product_detail_cust_id', 0)
+    //     ->get();
+    // return view('products.show', ["products" => $data]);
     }
 
     /**
@@ -136,12 +143,35 @@ class ProductController extends Controller
             // 'product_image' => 'required',
             'product_point' => 'required'
         ]);
-        $product = Product::where('product_id',$id)->update([
-            'product_name' => $request->input('product_name'),
-            'product_description' => $request->input('product_description'),
-            // 'product_image' => $request->input('product_image'),
-            'product_point' => $request->input('product_point'),
-        ]);
+        // dd($request->product_image);
+        
+        if ($request->product_image) {
+            $nama_file = $request->file('product_image')->store('public/images');
+            $nama_file = str_replace('public/', '', $nama_file);
+ 
+            $product = Product::where('product_id',$id)->update([
+                'product_name' => $request->input('product_name'),
+                'product_description' => $request->input('product_description'),
+                'product_image' => $nama_file,
+                'product_point' => $request->input('product_point'),
+            ]);
+ 
+        } else {
+ 
+            $product = Product::where('product_id',$id)->update([
+                'product_name' => $request->input('product_name'),
+                'product_description' => $request->input('product_description'),
+                // 'product_image' => $request->input('product_image'),
+                'product_point' => $request->input('product_point'),
+            ]);
+ 
+        }
+        // $product = Product::where('product_id',$id)->update([
+        //     'product_name' => $request->input('product_name'),
+        //     'product_description' => $request->input('product_description'),
+        //     // 'product_image' => $request->input('product_image'),
+        //     'product_point' => $request->input('product_point'),
+        // ]);
 
         return redirect()->route('products.index')
             ->with('success', 'Product updated successfully');
@@ -161,4 +191,9 @@ class ProductController extends Controller
         return redirect()->route('products.index')
             ->with('success', 'Product deleted successfully');
     }
+
+    // public function editImageUpload(Request $request)
+    // {
+    //     dd($request);
+    // }
 }
