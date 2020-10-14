@@ -51,11 +51,16 @@
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
+<<<<<<< HEAD
             <img width="150px" src="{{ url('/storage/'.$product->product_image) }}">
+=======
+                <img width="150px" src="{{ url('/storage/'.$product->product_image) }}">
+>>>>>>> fe32651ced1356c7bfeb7f7c295bb6db43bf8138
                 <div class="form-group">
                     <strong>Product Image:</strong>
                     <input type="file" name="product_image">
                 </div>
+<<<<<<< HEAD
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -73,4 +78,13 @@ CKEDITOR.replace( 'product_description' );
                 <button type="submit" class="btn btn-primary">Update Image</button>
             </div>
     </form> -->
+=======
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+
+    </form>
+>>>>>>> fe32651ced1356c7bfeb7f7c295bb6db43bf8138
 @endsection

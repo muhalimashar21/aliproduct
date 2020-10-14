@@ -42,6 +42,7 @@ Route::post('upload/proses', [ProductController::class,'proses_upload'])->name('
 Route::get('upload', [UploadController::class, 'upload'])->name('upload');
 Route::post('upload/proses', [UploadController::class,'proses_upload'])->name('proses_upload');
 Route::post('upload/hapus', [UploadController::class,'destroy'])->name('destroy');
+
 // Route::put('/numbers/{id}/update', 'NumberController@update');
 
 Route::post('update-image-product', [ProductController::class,'editImageUpload'])->name('products.update.image');
